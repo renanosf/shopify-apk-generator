@@ -1,0 +1,38 @@
+{
+  "name": "shopify-app-generator-server",
+  "version": "0.1.0",
+  "description": "server for the shopify challange",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "shopify",
+    "server",
+    "expressjs"
+  ],
+  "author": "Renan Fortes",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.5.2",
+    "aws-sdk": "^2.3.3",
+    "body-parser": "^1.15.0",
+    "ejs": "^2.5.2",
+    "email-validator": "^1.0.4",
+    "express": "^4.13.4",
+    "file-stream-rotator": "0.0.6",
+    "imagemin": "^4.0.0",
+    "morgan": "^1.6.1",
+    "multer": "^1.1.0",
+    "node-gettext": "^1.0.1",
+    "promise": "^7.1.1",
+    "redis": "^2.5.0-1",
+    "request": "^2.69.0",
+    "serve-favicon": "^2.3.0",
+    "uuid": "^2.0.1"
+  },
+  "devDependencies": {
+    "colors": "^1.1.2",
+    "gulp": "^3.9.1"
+  }
+}
