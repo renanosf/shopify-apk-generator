@@ -1,0 +1,11 @@
+<ion-view view-title="{{name}}">
+  <ion-content class="padding">
+    <div class="list">
+      <a class="item item-thumbnail-left" href="#" ng-repeat="p in products">
+        <img ng-src="{{p.image.src}}">
+        <h2>{{p.title}}<small class="rightSmall">${{p.variants[0].price}}</small></h2>
+        <div ng-bind-html="p.body_html"></div>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

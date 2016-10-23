@@ -1,0 +1,10 @@
+{
+  	"env": {
+		'node': true,
+	},
+  	"rules": {
+	    "indent" : 0,
+	    "func-style" : [2,"expression"]
+  	},
+    "extends": "eslint"
+}
