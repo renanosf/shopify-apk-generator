@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<title>Shopify - Android App Generator</title>
+
+	<link href="lib/please-wait/build/please-wait.css" rel="stylesheet">
+	<link href="lib/please-wait/build/default.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/angular.wizard/latest/angular-wizard.min.css">
+	<link href="app/style.css" rel="stylesheet">
+</head>
+<body ng-app="AppGenerator">
+	<div class="container">
+		<ui-view></ui-view>
+	</div>
+
+	<script src="lib/please-wait/build/please-wait.min.js"></script>
+	<script>
+		var loadingHtml = "<div class='sk-spinner sk-spinner-wave'><div class='sk-rect1'></div><div class='sk-rect2'></div><div class='sk-rect3'></div><div class='sk-rect4'></div><div class='sk-rect5'></div></div>";
+		var logo = 'https://cdn.shopify.com/assets2/press/brand/shopify-logo-main-small-f029fcaf14649a054509f6790ce2ce94d1f1c037b4015b4f106c5a67ab033f5b.png';
+
+		window.loading_screen = window.pleaseWait({
+			logo : logo,
+			backgroundColor: '#f46d3b',
+			loadingHtml: loadingHtml
+      	});
+	</script>
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="lib/ng-flow/dist/ng-flow-standalone.min.js"></script>
+	<script type="text/javascript" src="http://cdn.jsdelivr.net/angular.wizard/latest/angular-wizard.min.js"></script>
+	<script src="app/app.js"></script>
+</body>
+</html>

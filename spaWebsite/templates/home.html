@@ -1,0 +1,63 @@
+<div class="shopify-wizard">
+	<wizard on-finish="finishedWizard()"> 
+	    <wz-step wz-title="Keys" class="shopify-step" canexit="sendKeys">
+	        <h1 class="wizard-heading">Shopify <small>Adroid APK Generator</small></h1>
+	        
+	        <div class="grayDiv"><h3>We'll go through this wizard to help you create an android application to display the items of your store</h3><p>The first thing you have to do is go to your Shopify admin area and generate a private app. Copy your api key and api password here</p></div>
+	        
+	        <label>Enter your api key</label>
+	        <input type="text" placeholder="a1b2c3d4e5" ng-model="info.apiKey">
+	        
+	        <label>Enter your api password</label>
+	        <input type="text" placeholder="1a2b3c4d5e" ng-model="info.apiPassword">
+
+	        <label>Enter your store url</label>
+	        <input type="text" placeholder="coldbeers.myshopify.com" ng-model="info.storeUrl">
+
+	        <label>Enter your app name(spaces will be trim)</label>
+	        <input type="text" placeholder="myApp" ng-model="info.appName"><br><br>
+	        
+	        <button wz-next ng-disabled="buttonText === 'Loading'" ng-class="{'loadingButton' : buttonText === 'Loading'}">{{buttonText}}</button>
+	    </wz-step>
+	    <wz-step wz-title="Options" class="shopify-step" canexit="checkCollections">
+	        <h1 class="wizard-heading">Shopify <small>Adroid APK Generator</small></h1>
+
+	        <!-- If possible You can also change the color of the navbar-->
+
+	        <div class="grayDiv"><h3>Your app will have a tab to browse products and you can have up to four collectons in this tab. Now it's your time to select the collections and icons that will appear.</h3></div>
+
+	        <p>Double click to select the collections</p>
+
+	        <ul class="list-collections" ng-show="selectedCollections.length <= 4">
+	        	<li ng-repeat="c in customCollections" ng-class="{'noImage' : !c.image}" ng-dblclick="selectCollection(c,$index)"><img ng-src="{{c.image.src}}" ng-show="c.image"><h3>{{c.title}}</h3></li>
+	        </ul>
+
+	        <h4 ng-show="selectedCollections.length > 0">To see a full list of icons go to <a href="http://ionicons.com" target="_blank">http://ionicons.com</a>. Just click the icon you want and copy the text.</h4>
+
+	        <div ng-repeat="c in selectedCollections">
+	        	<p style="color:#333;font-weight:bold;">{{$index + 1}} Collection -> {{c.title}} <small>Select a icon to your collection(required)</small></p>
+	        	<input type="text" ng-model="c.icon" placeholder="Select an ionic class">
+	        </div>
+	        <br><br>
+	        <button wz-next ng-disabled="buttonText === 'Loading'" ng-class="{'loadingButton' : buttonText === 'Loading'}">{{buttonText}}</button>
+	    </wz-step>
+	    <wz-step wz-title="Icon" class="shopify-step">
+	        <h1 class="wizard-heading">Shopify <small>Adroid APK Generator</small></h1>
+	        
+	        <div class="grayDiv"><h3>Now upload an icon to your application. The format must be png, the recommended size is 192x192 and should not exceed 2MB</h3></div>
+
+	        <div flow-init="{target : 'http://54.162.181.5/webservice/upload', singleFile : true, query : {tipo : 'icon'}}" flow-files-submitted="sendIcon($flow)" flow-file-progress="progress( $file, $flow )" flow-file-success="success($file, $message, $flow)" flow-error="error( $file, $message, $flow )">
+	        	<input type="file" name="file" accept="image/png" flow-btn>
+	        </div>
+	    </wz-step>
+	    <wz-step wz-title="Splash" class="shopify-step">
+	        <h1 class="wizard-heading">Shopify <small>Adroid APK Generator</small></h1>
+	        
+	        <div class="grayDiv"><h3>Now upload a splash screen to your application. The format must be png, the recommended size is 2208x2208 and should not exceed 2MB</h3></div>
+
+	        <div flow-init="{target : 'http://54.162.181.5/webservice/upload', singleFile : true, query : {tipo : 'splash'}}" flow-files-submitted="sendIcon($flow)" flow-file-progress="progress( $file, $flow )" flow-file-success="success($file, $message, $flow)" flow-error="error( $file, $message, $flow )">
+	        	<input type="file" name="file" accept="image/png" flow-btn>
+	        </div>
+	    </wz-step>
+	</wizard>
+</div>

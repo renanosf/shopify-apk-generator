@@ -1,0 +1,26 @@
+{
+  "name": "android-app-generator",
+  "version": "0.1.0",
+  "description": "shopify embedded app to generate android apks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint \"app/*.js\"",
+    "lint-fix": "eslint \"app/*.js\" --fix"
+  },
+  "keywords": [
+    "shopify",
+    "app",
+    "generator"
+  ],
+  "author": "Renan Fortes",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.17.5",
+    "eslint": "^3.8.1",
+    "eslint-config-angular": "^0.5.0",
+    "eslint-plugin-angular": "^1.4.1",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.1.0"
+  }
+}
