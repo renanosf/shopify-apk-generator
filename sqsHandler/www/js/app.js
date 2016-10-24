@@ -71,10 +71,10 @@ angular.module('starter', ['ionic', 'starter.controllers','shopifyVars'])
   })
   REMOVE IF COLLECTIONS > 3 */
   /* REMOVE IF COLLECTIONS > 4
-  .state('tab.collection_three', {
-    url: '/collection_three',
+  .state('tab.collection_four', {
+    url: '/collection_four',
     views: {
-      'tab-collection_three': {
+      'tab-collection_four': {
         templateUrl: 'templates/tab-collection.html',
         controller: 'CollectionCtrl'
       }

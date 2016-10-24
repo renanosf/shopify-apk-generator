@@ -7,11 +7,11 @@ var Promise = require("promise");
 var exec = require("child_process").exec;
 var redis = require("./redis.js");
 
-var appQueueUrl = "https://sqs.us-east-1.amazonaws.com/977575696306/appQueue";
-var bucketName = "shopify-app-generator";
+var appQueueUrl = process.env.SHOPIFY_SQS_URL;
+var bucketName = process.env.SHOPIFY_S3_BUCKET;
 
 var sqs = new AWS.SQS({region: "us-east-1"});
-var s3 = new AWS.S3({region : 'sa-east-1', endpoint : 'https://s3-sa-east-1.amazonaws.com'});
+var s3 = new AWS.S3({region : 'us-east-1', endpoint : 'https://s3.amazonaws.com'});
 //Initialize variables
 var waitFunction, createApp, receiveQueue, createConstantsFile, deleteMessageFromQueue, checkIfProjectAlreadyExists, buildApp, sendApkToS3, saveApkRedis, getIcon, sendIconToPath, getSplash, sendSplashToPath, generateResources, copyFiles, gulpApp, gulpControllers, gulpTabs = null;
 
@@ -160,10 +160,10 @@ gulpControllers = function(data,body){
 
 gulpTabs = function(data,body){
     console.log("Gulp Tabs");
-    var titles = "--title1=\"" + body.selectedCollections[0].title + "\" ";
-    if(body.selectedCollections.length > 1) titles = titles + "--title2=\"" + body.selectedCollections[1].title + "\" ";
-    if(body.selectedCollections.length > 2) titles = titles + "--title3=\"" + body.selectedCollections[2].title + "\" ";
-    if(body.selectedCollections.length > 3) titles = titles + "--title4=\"" + body.selectedCollections[3].title + "\" ";
+    var titles = "--title1=\"" + body.selectedCollections[0].title + "\" --icon1=\"" + body.selectedCollections[0].icon + "\" ";
+    if(body.selectedCollections.length > 1) titles = titles + "--title2=\"" + body.selectedCollections[1].title + "\" --icon2=\"" + body.selectedCollections[1].icon + "\" ";
+    if(body.selectedCollections.length > 2) titles = titles + "--title3=\"" + body.selectedCollections[2].title + "\" --icon3=\"" + body.selectedCollections[2].icon + "\" "
+    if(body.selectedCollections.length > 3) titles = titles + "--title4=\"" + body.selectedCollections[3].title + "\" --icon4=\"" + body.selectedCollections[3].icon + "\" "
     console.log(titles);
     var path = "/home/ubuntu/projects/" + body.apiKey + "/" + body.appName + "/www/templates";
     var command = "cd /home/ubuntu/sqsHandler && gulp tabs --size=" + body.selectedCollections.length + " --path=\"" + path + "\" " + titles;
@@ -251,7 +251,6 @@ receiveQueue = function() {
             waitFunction();
         } else {
             if (typeof data.Messages === "undefined") {
-                console.log("waiting for queue");
                 waitFunction();
             } else {
                 console.log(data.Messages[0]);

@@ -7,7 +7,7 @@ var redis = require('../../../lib/redis.js');
 var aws = require('../../../lib/aws.js');
 var AWS = require('aws-sdk');
 
-var appQueueUrl = "https://sqs.us-east-1.amazonaws.com/977575696306/appQueue";
+var appQueueUrl = process.env.SHOPIFY_SQS_URL;
 
 var sqs = new AWS.SQS({region: "us-east-1"});
 
